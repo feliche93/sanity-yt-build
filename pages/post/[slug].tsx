@@ -19,7 +19,7 @@ interface IFormInput {
 }
 
 function BlogPost({ post }: Props) {
-  console.log(post)
+  console.log(post.comments.length)
 
   const [submitted, setSubmitted] = useState(false)
 
@@ -177,18 +177,21 @@ function BlogPost({ post }: Props) {
               <p>Your comment will be published after approval.</p>
             </div>
           )}
-          <div className="my-10 mx-auto flex max-w-2xl flex-col space-y-2 p-10 shadow shadow-yellow-500">
-            <h3 className="text-4xl">Comments</h3>
-            <hr className="pb-2" />
-            {post.comments.map((comment) => (
-              <div>
-                <p>
-                  <span className="text-yellow-500">{comment.name}</span>:{' '}
-                  {comment.comment}
-                </p>
-              </div>
-            ))}
-          </div>
+          {/* Comments */}
+          {post.comments.length > 0 && (
+            <div className="my-10 mx-auto flex max-w-2xl flex-col space-y-2 p-10 shadow shadow-yellow-500">
+              <h3 className="text-4xl">Comments</h3>
+              <hr className="pb-2" />
+              {post.comments.map((comment) => (
+                <div>
+                  <p>
+                    <span className="text-yellow-500">{comment.name}</span>:{' '}
+                    {comment.comment}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
         </article>
       </main>
     </>
